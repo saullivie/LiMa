@@ -71,8 +71,22 @@ Un même acteur peut cumuler plusieurs rôles. Les listes « prestataires » et 
 
 **Visibilité :** les données d'un espace sont communes ; qualité pro et affinité sont visibles par tous ses utilisateurs.
 
+## Champs du type Lieu
+
+| Champ | Description |
+| --- | --- |
+| Nom | Par exemple « atelier », « garage » |
+| Type | Domicile, commerce, administration, terrain, etc. |
+| Adresse | Adresse postale |
+| Coordonnées GPS | Pour calculer les distances |
+| Horaires d'ouverture | Jours et plages horaires |
+| Accès | Parking, contraintes, remarques pratiques |
+| Notes | Texte libre |
+
+Un lieu peut être marqué comme **domicile** : c'est le point de départ des calculs de distance.
+
 ## À définir ensuite
 
-- Les champs des autres types (lieu, ressource, activité, échéance, transaction, document).
+- Les champs des autres types (ressource, activité, échéance, transaction, document).
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.
