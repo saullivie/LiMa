@@ -45,7 +45,7 @@ flowchart LR
 | Interface | **PWA** légère : consultation, saisie texte, photo, résumé du jour, validations | Application native si les limites de la PWA gênent | Un seul code pour tous les téléphones |
 | Serveur d'inférence | Serveur local compatible (llama.cpp ou équivalent), sortie contrainte par un **schéma JSON** | Autres serveurs locaux | La sortie structurée évite les réponses inexploitables |
 | Notifications | Serveur **ntfy auto-hébergé**, priorité 3 = normale, priorité 5 = urgente | Web Push de la PWA, avec contenu minimal | Voir section 6 |
-| Accès distant | **WireGuard** direct vers la machine | Headscale auto-hébergé ; relais chiffré sur un serveur loué | Voir section 5 |
+| Accès distant | **WireGuard** : en étoile via un relais que l'utilisateur administre, ou direct s'il n'en a pas | Headscale auto-hébergé | Voir section 5 |
 | Sauvegardes | **restic** (chiffrement côté client) vers un stockage distant | borg, ou tout outil chiffrant côté client | Le prestataire ne voit que des blocs chiffrés |
 
 ## 4. IA locale
@@ -85,12 +85,22 @@ Principe repris des comparatifs consultés : **le modèle propose des candidats,
 
 | Option | Avantages | Limites | Verdict |
 | --- | --- | --- | --- |
-| **WireGuard direct** | Aucun tiers, chiffrement de bout en bout, très léger, VPN permanent possible sur Android | Configuration manuelle ; nécessite une adresse publique joignable chez soi | **Recommandé pour la V1** |
+| **WireGuard en étoile via un relais administré** (VM minimale sur un serveur en ligne que l'utilisateur administre) | Aucun port ouvert chez soi, adresse fixe, fonctionne même sans adresse publique à domicile, VPN permanent possible sur Android | Un serveur de plus à sécuriser et à mettre à jour ; le relais connaît les métadonnées de connexion | **Recommandé si l'utilisateur dispose déjà d'un tel serveur** |
+| **WireGuard direct** | Aucun intermédiaire, très léger | Nécessite une adresse publique joignable et un port ouvert chez soi | Recommandé sinon |
 | Headscale auto-hébergé (plan de contrôle de type Tailscale) | Enregistrement des appareils simplifié, règles d'accès, trafic direct chiffré | Un serveur de plus à exploiter et à sauvegarder ; pas d'interface officielle | À envisager si le nombre d'appareils augmente |
 | Service cloud de VPN maillé | Très simple | Le plan de contrôle est chez un tiers, ce qui contredit la règle de maîtrise | **Écarté** |
 | Application exposée sur Internet derrière une authentification | Aucun logiciel sur le téléphone | Surface d'attaque large, données sensibles exposées | **Écarté pour la V1** |
 
-- **Si la connexion du domicile n'a pas d'adresse publique joignable** : relais WireGuard sur un petit serveur loué dont l'utilisateur a l'administration. Il ne voit que du trafic chiffré de bout en bout ; aucune donnée en clair n'y est stockée. À valider avec l'utilisateur au moment de la mise en place.
+### Topologie en étoile via un relais administré
+
+Le téléphone et la machine locale se connectent **tous deux** à une petite VM de relais ; la machine locale n'ouvre aucun port sur Internet.
+
+- **Le relais ne doit rien voir en clair.** Un relais WireGuard en étoile route les paquets entre les deux appareils et pourrait voir le contenu non chiffré qui les traverse. C'est pourquoi le **TLS se termine sur la machine locale** (jamais sur le relais) : le relais ne voit que du trafic TLS chiffré de bout en bout.
+- **Aucune donnée, aucun service applicatif** dans la VM de relais : uniquement WireGuard.
+- **VM dédiée et minimale**, isolée des autres VM du serveur ; seul le port du VPN est ouvert sur Internet.
+- L'**interface d'administration de l'hyperviseur** n'est jamais exposée sur Internet : accessible seulement par le VPN ; second facteur activé ; mises à jour régulières.
+- **Limite à connaître** : le serveur physique appartient à un hébergeur. C'est acceptable pour un relais qui ne voit que du trafic chiffré et pour des sauvegardes chiffrées côté client, **pas** pour héberger l'application, la base ou l'IA, qui seraient lisibles en mémoire.
+- **Sans serveur en ligne** : WireGuard direct, avec un port ouvert chez soi et une adresse publique joignable ; sinon louer un petit relais selon les mêmes règles.
 - Le **nom de domaine** sert à nommer la machine et à obtenir des certificats ; l'application n'est pas exposée publiquement.
 - Sur le téléphone : VPN permanent activé, application PWA installée.
 
@@ -189,7 +199,7 @@ Les choix 1 à 4 ont été laissés au jugement de Claude par l'utilisateur : il
 | N° | Décision | Statut |
 | --- | --- | --- |
 | 1 | **SQLite** plutôt que PostgreSQL pour la V1 | Retenu |
-| 2 | **WireGuard direct** ; relais chiffré sur un serveur loué seulement si l'adresse publique n'est pas joignable (à valider à ce moment-là) | Retenu |
+| 2 | **WireGuard en étoile via un relais administré** (TLS terminé sur la machine locale) quand l'utilisateur dispose d'un serveur en ligne ; WireGuard direct sinon | Retenu, précisé |
 | 3 | **ntfy auto-hébergé** pour les notifications, Web Push seulement en secours | Retenu |
 | 4 | **Une seule machine** pour tout en V1 ; IA sur une machine dédiée si le besoin apparaît | Retenu |
 | 5 | **Modèles** : à choisir par test sur des documents fictifs avant tout usage réel | En attente du protocole de test |

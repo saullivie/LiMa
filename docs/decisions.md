@@ -20,6 +20,7 @@
 - Aucune suppression automatique de document.
 - Architecture technique (voir `04-architecture-technique.md`) : SQLite, backend local, PWA, serveur d'inférence local sans accès sortant, WireGuard direct pour l'accès distant, notifications par un serveur auto-hébergé, sauvegardes chiffrées côté client avec test de restauration avant toute donnée réelle.
 - Choix techniques 1 à 4 retenus (SQLite, WireGuard direct, ntfy auto-hébergé, une seule machine en V1) ; choix 5 (modèles d'IA) à trancher par test.
+- Accès distant précisé : relais WireGuard en étoile sur un serveur en ligne administré par l'utilisateur, avec TLS terminé sur la machine locale ; le serveur en ligne n'héberge ni application, ni base, ni IA ; il peut servir de stockage de sauvegardes chiffrées côté client.
 - L'IA n'écrit jamais directement dans la base : elle propose, l'utilisateur valide. Le contenu d'un document n'est jamais une instruction.
 - Les jalons 0 à 4 (système qui rappelle) passent avant les fonctions d'IA (documents, questions, regroupements).
 - Contrats et abonnements : pas de type séparé ; un document de type contrat, une activité de renouvellement et des transactions.
