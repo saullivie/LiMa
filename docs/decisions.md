@@ -19,6 +19,7 @@
 - Le regroupement n'est proposé que si le gain est démontrable ; un regroupement refusé n'est pas reproposé.
 - Aucune suppression automatique de document.
 - Architecture technique (voir `04-architecture-technique.md`) : SQLite, backend local, PWA, serveur d'inférence local sans accès sortant, WireGuard direct pour l'accès distant, notifications par un serveur auto-hébergé, sauvegardes chiffrées côté client avec test de restauration avant toute donnée réelle.
+- Choix techniques 1 à 4 retenus (SQLite, WireGuard direct, ntfy auto-hébergé, une seule machine en V1) ; choix 5 (modèles d'IA) à trancher par test.
 - L'IA n'écrit jamais directement dans la base : elle propose, l'utilisateur valide. Le contenu d'un document n'est jamais une instruction.
 - Les jalons 0 à 4 (système qui rappelle) passent avant les fonctions d'IA (documents, questions, regroupements).
 - Contrats et abonnements : pas de type séparé ; un document de type contrat, une activité de renouvellement et des transactions.

@@ -34,4 +34,4 @@ Phase actuelle : **conception** (phases A à E du prompt maître : inventaire, c
 
 ## Prochaine étape
 
-Valider l'architecture technique (section « Décisions à valider » de `docs/04-architecture-technique.md`), puis lancer le jalon 0 : socle (machine, VPN, sauvegardes chiffrées testées).
+Définir le protocole de test des modèles d'IA (décision 5 de `docs/04-architecture-technique.md`), puis lancer le jalon 0 : socle (machine, VPN, sauvegardes chiffrées testées).

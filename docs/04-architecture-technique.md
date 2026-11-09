@@ -182,15 +182,17 @@ Valeurs proposées, à ajuster :
 | Matériel qui vieillit | Procédure de restauration sur un autre PC ; possibilité de changer de GPU sans changer le logiciel |
 | Notifications retardées par l'économie d'énergie du téléphone | Livraison instantanée, exclusion de l'application de l'optimisation de batterie, relances par paliers |
 
-## 14. Décisions à valider
+## 14. Décisions
 
-Choix que j'ai faits par défaut, avec leur alternative :
+Les choix 1 à 4 ont été laissés au jugement de Claude par l'utilisateur : ils sont **retenus**. Le choix 5 reste à trancher par test.
 
-1. **SQLite** plutôt que PostgreSQL pour la V1.
-2. **WireGuard direct** ; relais chiffré sur un serveur loué seulement si l'adresse publique n'est pas joignable.
-3. **ntfy auto-hébergé** pour les notifications, Web Push seulement en secours.
-4. **Une seule machine** pour tout en V1 ; séparation de l'IA sur une machine dédiée si le besoin apparaît.
-5. **Modèles** : à choisir par test sur des documents fictifs avant tout usage réel.
+| N° | Décision | Statut |
+| --- | --- | --- |
+| 1 | **SQLite** plutôt que PostgreSQL pour la V1 | Retenu |
+| 2 | **WireGuard direct** ; relais chiffré sur un serveur loué seulement si l'adresse publique n'est pas joignable (à valider à ce moment-là) | Retenu |
+| 3 | **ntfy auto-hébergé** pour les notifications, Web Push seulement en secours | Retenu |
+| 4 | **Une seule machine** pour tout en V1 ; IA sur une machine dédiée si le besoin apparaît | Retenu |
+| 5 | **Modèles** : à choisir par test sur des documents fictifs avant tout usage réel | En attente du protocole de test |
 
 ## Sources consultées
 
