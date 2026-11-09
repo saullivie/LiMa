@@ -27,6 +27,7 @@ Phase actuelle : **conception** (phases A à C du prompt maître : inventaire, c
 | `docs/prompt-maitre.md` | Prompt maître d'origine (méthode en phases A à G) |
 | `docs/00-cadrage.md` | Cadrage : usages, données et confidentialité, périmètre V1 |
 | `docs/01-inventaire.md` | Domaines génériques et regroupement en blocs |
+| `docs/02-modele-de-donnees.md` | Modèle de données : types d'éléments, rôles, relations |
 | `docs/decisions.md` | Journal des décisions |
 
 ## Prochaine étape

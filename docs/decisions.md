@@ -10,3 +10,5 @@
 - Périmètre de la V1 : bloc mobilité et archives liées, avec la boucle complète (saisie, extraction, échéances, rappels, résumé du jour, questions).
 - Regroupement des 13 domaines en 5 blocs validé.
 - Le projet est construit dans ce dépôt GitHub privé.
+- Modèle de données : 7 types d'éléments (acteur, lieu, ressource, activité, échéance, transaction, document).
+- Prestataire et fournisseur sont des rôles du type Acteur, et non des types séparés.
