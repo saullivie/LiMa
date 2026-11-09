@@ -139,8 +139,29 @@ L'activité est le processus récurrent : c'est elle qui génère les échéance
 | Mode de traitement | À faire soi-même, à déléguer ou automatisable |
 | Délai de rappel | Combien de temps avant l'échéance prévenir |
 
+## Champs du type Échéance
+
+L'échéance est une occurrence datée d'une activité, créée automatiquement par le code. Elle alimente les rappels et le résumé du jour.
+
+| Champ | Description |
+| --- | --- |
+| Activité d'origine | Lien vers une activité |
+| Date prévue | |
+| Date limite | Par exemple la limite légale d'un contrôle |
+| Statut | À venir, proposée, planifiée, faite, reportée, annulée, en retard |
+| Date de réalisation | |
+| Ressource, acteur, lieu | Repris de l'activité, modifiables |
+| Rendez-vous pris | Date et heure |
+| Urgence | Fixe le niveau de notification (normale ou urgente) |
+| Compteur à la réalisation | Kilomètres ou heures, pour recalculer la prochaine échéance quand la fréquence dépend de l'usage |
+| Regroupement | Lien vers un passage commun avec d'autres échéances |
+| Documents, notes | Justificatif, facture, texte libre |
+
+Le coût réel n'est pas saisi sur l'échéance : il provient d'une transaction liée.
+
 ## À définir ensuite
 
-- Les champs des autres types (échéance, transaction, document).
+- Les champs des autres types (transaction, document).
+- La place des contrats et des abonnements (probablement une activité récurrente, un document et des transactions).
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.
