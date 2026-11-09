@@ -120,8 +120,27 @@ Deux sortes de ressources : les **biens suivis individuellement** et les **conso
 
 **Historique des commandes :** ce n'est pas un champ saisi. Il est consulté depuis la fiche de la ressource et déduit des transactions d'achat qui lui sont rattachées (date, quantité, prix, fournisseur). Il permet de calculer la consommation moyenne et d'anticiper les réapprovisionnements. Les champs nécessaires (quantité, statut de commande) seront définis avec le type Transaction.
 
+## Champs du type Activité
+
+L'activité est le processus récurrent : c'est elle qui génère les échéances.
+
+| Champ | Description |
+| --- | --- |
+| Nom | Par exemple « révision annuelle » |
+| Catégorie / bloc | Mobilité, maison, administratif, etc. |
+| Fréquence | Par durée (tous les 12 mois), par usage (tous les 10 000 km ou toutes les 200 heures) ou par saison |
+| Ressources concernées | Liens vers des ressources |
+| Acteurs impliqués | Liens vers des acteurs (prestataire, fournisseur) |
+| Lieu | Lien vers un Lieu |
+| Durée estimée | |
+| Coût estimé | |
+| Dépendances | Ce qu'il faut faire ou avoir avant |
+| Regroupable avec | Autres activités pouvant se faire en même temps |
+| Mode de traitement | À faire soi-même, à déléguer ou automatisable |
+| Délai de rappel | Combien de temps avant l'échéance prévenir |
+
 ## À définir ensuite
 
-- Les champs des autres types (activité, échéance, transaction, document).
+- Les champs des autres types (échéance, transaction, document).
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.
