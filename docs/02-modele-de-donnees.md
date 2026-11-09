@@ -159,9 +159,52 @@ L'échéance est une occurrence datée d'une activité, créée automatiquement 
 
 Le coût réel n'est pas saisi sur l'échéance : il provient d'une transaction liée.
 
-## À définir ensuite
+## Champs du type Transaction
 
-- Les champs des autres types (transaction, document).
-- La place des contrats et des abonnements (probablement une activité récurrente, un document et des transactions).
+Une transaction est une dépense, un achat ou un paiement.
+
+| Champ | Description |
+| --- | --- |
+| Type | Dépense, achat de consommable (commande), paiement récurrent, remboursement |
+| Date | |
+| Montant | |
+| Acteur concerné | Fournisseur, prestataire, administration |
+| Rattachement | Lien vers une échéance, une ressource ou une activité |
+| Quantité, unité | Pour les achats de consommables : alimente l'historique des commandes |
+| Statut de commande | Commandée, livrée, annulée |
+| Catégorie budgétaire | Pour suivre les coûts par domaine |
+| Moyen de paiement | Type seulement (carte, virement, espèces) ; **jamais de numéro de carte ni de compte** |
+| Documents, notes | Facture, texte libre |
+
+## Champs du type Document
+
+Un document est un fichier rattaché aux autres éléments. Le fichier lui-même est stocké sur la machine locale de l'utilisateur, jamais dans ce dépôt.
+
+| Champ | Description |
+| --- | --- |
+| Titre | |
+| Type | Facture, contrat, attestation, pièce d'identification d'un bien, photo, notice, courrier, etc. |
+| Fichier | Référence vers le fichier stocké localement |
+| Date du document | Et date d'ajout |
+| Éléments liés | Un ou plusieurs acteurs, ressources, activités, échéances ou transactions |
+| Date de fin de validité | Pour les documents qui expirent ; génère une échéance |
+| Durée de conservation | Pour les archives |
+| Texte extrait | Pour la recherche par l'IA |
+| Données extraites | Informations lues par l'IA, avec un statut : proposée par l'IA ou validée par un utilisateur |
+| Notes | Texte libre |
+
+Les données extraites par l'IA ne sont considérées comme fiables qu'après validation humaine, conformément au principe « l'IA propose, l'humain décide ».
+
+## Contrats et abonnements
+
+Pas de type séparé. Un contrat ou un abonnement se représente ainsi :
+
+- un **Document** de type « contrat », dont les champs supplémentaires sont : acteur cocontractant, date de début, date de fin, tacite reconduction (oui ou non), préavis de résiliation ;
+- une **Activité** de renouvellement, qui crée des échéances, dont une **date limite de résiliation** calculée à partir du préavis ;
+- des **Transactions** pour les paiements, récurrents ou non.
+
+L'IA remplit ces champs à partir de la photo ou du scan du contrat, et l'utilisateur valide.
+
+## À définir ensuite
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.

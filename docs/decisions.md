@@ -13,4 +13,7 @@
 - Modèle de données : 7 types d'éléments (acteur, lieu, ressource, activité, échéance, transaction, document).
 - Prestataire et fournisseur sont des rôles du type Acteur, et non des types séparés.
 - Ressources : distinction entre biens suivis individuellement et consommables en stock ; l'historique des commandes est déduit des transactions d'achat, pas saisi.
+- Contrats et abonnements : pas de type séparé ; un document de type contrat, une activité de renouvellement et des transactions.
+- Les données extraites par l'IA restent « proposées » jusqu'à validation par un utilisateur.
+- Le moyen de paiement ne stocke jamais de numéro de carte ni de compte.
 - Champs de l'Acteur définis : l'entreprise est une organisation à laquelle on se rattache, l'adresse renvoie à un Lieu, la distance au domicile est calculée et non saisie.
