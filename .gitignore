@@ -1,0 +1,9 @@
+# Aucune donnée personnelle dans ce dépôt
+data/
+uploads/
+documents/
+backups/
+*.db
+*.sqlite
+*.sqlite3
+.env
