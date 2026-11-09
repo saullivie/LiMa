@@ -1,4 +1,4 @@
-# manage — Système de gestion de vie
+# LiMa (Life Manager) — Système de gestion de vie
 
 Système de traitement pour gérer les aspects pratiques d'une vie comme un système cohérent : obligations, échéances, entretien, documents, achats, déplacements. Conçu pour être réutilisable par n'importe qui, dans n'importe quel contexte.
 
