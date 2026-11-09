@@ -52,8 +52,27 @@ Un même acteur peut cumuler plusieurs rôles. Les listes « prestataires » et 
 - Une transaction se rattache à un acteur et, le cas échéant, à une échéance ou une ressource.
 - Un document se rattache à un ou plusieurs éléments des autres types.
 
+## Champs du type Acteur
+
+| Champ | Description |
+| --- | --- |
+| Type | Personne ou organisation |
+| Nom, prénom | Prénom pour une personne seulement |
+| Rattachement | Pour une personne : lien vers l'organisation (autre acteur) |
+| Rôles | Un ou plusieurs (voir plus haut) |
+| Téléphones, mails | Plusieurs valeurs possibles |
+| Adresse | Lien vers un Lieu |
+| Qualité pro | Note de 1 à 5, pour prestataires, fournisseurs et organisations ; l'historique des évaluations pourra venir plus tard |
+| Affinité | Note subjective sur la relation (échelle à définir) |
+| Disponibilités | Horaires ou jours de disponibilité, pour planifier les rendez-vous |
+| Notes | Texte libre |
+
+**Valeur calculée, non saisie :** la distance au domicile, déduite de l'adresse (Lieu) de l'acteur et du Lieu « domicile ». Elle sert notamment à regrouper les déplacements.
+
+**Visibilité :** les données d'un espace sont communes ; qualité pro et affinité sont visibles par tous ses utilisateurs.
+
 ## À définir ensuite
 
-- Les champs de chaque type.
+- Les champs des autres types (lieu, ressource, activité, échéance, transaction, document).
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.
