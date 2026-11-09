@@ -85,8 +85,43 @@ Un même acteur peut cumuler plusieurs rôles. Les listes « prestataires » et 
 
 Un lieu peut être marqué comme **domicile** : c'est le point de départ des calculs de distance.
 
+## Champs du type Ressource
+
+Deux sortes de ressources : les **biens suivis individuellement** et les **consommables en stock**.
+
+**Champs communs**
+
+| Champ | Description |
+| --- | --- |
+| Nom | |
+| Catégorie | Véhicule, machine, outil, pièce, consommable, etc. |
+| Lieu de rangement | Lien vers un Lieu |
+| Documents | Documents rattachés (facture, notice, etc.) |
+| Notes | Texte libre |
+
+**Biens suivis individuellement** (véhicule, machine, outil)
+
+| Champ | Description |
+| --- | --- |
+| Marque, modèle | |
+| Numéro de série ou d'identification | |
+| Date et prix d'achat | |
+| Fournisseur | Lien vers un acteur |
+| Compteur d'usage | Kilomètres ou heures |
+| État | En service, en panne, vendu |
+
+**Consommables en stock** (carburant, filtres, pièces)
+
+| Champ | Description |
+| --- | --- |
+| Quantité en stock, unité | |
+| Seuil de réapprovisionnement | Déclenche une proposition de commande |
+| Fournisseur habituel | Lien vers un acteur |
+
+**Historique des commandes :** ce n'est pas un champ saisi. Il est consulté depuis la fiche de la ressource et déduit des transactions d'achat qui lui sont rattachées (date, quantité, prix, fournisseur). Il permet de calculer la consommation moyenne et d'anticiper les réapprovisionnements. Les champs nécessaires (quantité, statut de commande) seront définis avec le type Transaction.
+
 ## À définir ensuite
 
-- Les champs des autres types (ressource, activité, échéance, transaction, document).
+- Les champs des autres types (activité, échéance, transaction, document).
 - Le détail des relations (cardinalités).
 - Les règles de calcul des échéances et de regroupement des activités.

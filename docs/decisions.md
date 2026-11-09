@@ -12,4 +12,5 @@
 - Le projet est construit dans ce dépôt GitHub privé.
 - Modèle de données : 7 types d'éléments (acteur, lieu, ressource, activité, échéance, transaction, document).
 - Prestataire et fournisseur sont des rôles du type Acteur, et non des types séparés.
+- Ressources : distinction entre biens suivis individuellement et consommables en stock ; l'historique des commandes est déduit des transactions d'achat, pas saisi.
 - Champs de l'Acteur définis : l'entreprise est une organisation à laquelle on se rattache, l'adresse renvoie à un Lieu, la distance au domicile est calculée et non saisie.
