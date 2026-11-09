@@ -10,7 +10,7 @@ Ce dépôt contient uniquement le **système de traitement** : conception, code,
 
 ## État du projet
 
-Phase actuelle : **conception** (phases A à D du prompt maître : inventaire, classification, modélisation, optimisation). Modèle de données et règles de calcul rédigés. Aucun code pour l'instant.
+Phase actuelle : **conception** (phases A à E du prompt maître : inventaire, classification, modélisation, optimisation, architecture). Modèle de données, règles de calcul et architecture technique rédigés. Aucun code pour l'instant.
 
 ## Principes
 
@@ -29,8 +29,9 @@ Phase actuelle : **conception** (phases A à D du prompt maître : inventaire, c
 | `docs/01-inventaire.md` | Domaines génériques et regroupement en blocs |
 | `docs/02-modele-de-donnees.md` | Modèle de données : types d'éléments, rôles, relations |
 | `docs/03-regles-de-calcul.md` | Règles de calcul : échéances, rappels, regroupements, stocks, contrats |
+| `docs/04-architecture-technique.md` | Architecture technique : composants, IA locale, accès distant, notifications, sauvegardes, plan de la V1 |
 | `docs/decisions.md` | Journal des décisions |
 
 ## Prochaine étape
 
-Architecture technique (phase E) : base de données, services, accès distant sécurisé, sauvegardes chiffrées, choix de l'IA locale.
+Valider l'architecture technique (section « Décisions à valider » de `docs/04-architecture-technique.md`), puis lancer le jalon 0 : socle (machine, VPN, sauvegardes chiffrées testées).

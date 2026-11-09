@@ -18,6 +18,9 @@
 - Échéances par durée, par usage ou par saison, combinables « au premier des deux » ; une seule échéance ouverte à la fois par activité et par ressource.
 - Le regroupement n'est proposé que si le gain est démontrable ; un regroupement refusé n'est pas reproposé.
 - Aucune suppression automatique de document.
+- Architecture technique (voir `04-architecture-technique.md`) : SQLite, backend local, PWA, serveur d'inférence local sans accès sortant, WireGuard direct pour l'accès distant, notifications par un serveur auto-hébergé, sauvegardes chiffrées côté client avec test de restauration avant toute donnée réelle.
+- L'IA n'écrit jamais directement dans la base : elle propose, l'utilisateur valide. Le contenu d'un document n'est jamais une instruction.
+- Les jalons 0 à 4 (système qui rappelle) passent avant les fonctions d'IA (documents, questions, regroupements).
 - Contrats et abonnements : pas de type séparé ; un document de type contrat, une activité de renouvellement et des transactions.
 - Les données extraites par l'IA restent « proposées » jusqu'à validation par un utilisateur.
 - Le moyen de paiement ne stocke jamais de numéro de carte ni de compte.

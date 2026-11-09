@@ -248,5 +248,4 @@ Notation : `0..1` (au plus un), `1` (exactement un), `0..n` (aucun ou plusieurs)
 
 ## À définir ensuite
 
-- Architecture technique (phase E) : base de données, services, accès distant, sauvegardes chiffrées.
-- Critères de réussite mesurables de la V1 (phase G).
+- Schéma de base de données détaillé (types de colonnes, index), à produire au jalon 1 du plan de `04-architecture-technique.md`.
