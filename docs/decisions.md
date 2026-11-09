@@ -13,6 +13,11 @@
 - Modèle de données : 7 types d'éléments (acteur, lieu, ressource, activité, échéance, transaction, document).
 - Prestataire et fournisseur sont des rôles du type Acteur, et non des types séparés.
 - Ressources : distinction entre biens suivis individuellement et consommables en stock ; l'historique des commandes est déduit des transactions d'achat, pas saisi.
+- Relations : tout élément appartient à un espace ; le regroupement est un objet auxiliaire ; une échéance peut exister sans activité (événement ponctuel).
+- Règles de calcul : calculs faits par du code, jamais par l'IA ; valeurs initiales modifiables (voir `03-regles-de-calcul.md`).
+- Échéances par durée, par usage ou par saison, combinables « au premier des deux » ; une seule échéance ouverte à la fois par activité et par ressource.
+- Le regroupement n'est proposé que si le gain est démontrable ; un regroupement refusé n'est pas reproposé.
+- Aucune suppression automatique de document.
 - Contrats et abonnements : pas de type séparé ; un document de type contrat, une activité de renouvellement et des transactions.
 - Les données extraites par l'IA restent « proposées » jusqu'à validation par un utilisateur.
 - Le moyen de paiement ne stocke jamais de numéro de carte ni de compte.

@@ -10,7 +10,7 @@ Ce dépôt contient uniquement le **système de traitement** : conception, code,
 
 ## État du projet
 
-Phase actuelle : **conception** (phases A à C du prompt maître : inventaire, classification, modélisation). Aucun code pour l'instant.
+Phase actuelle : **conception** (phases A à D du prompt maître : inventaire, classification, modélisation, optimisation). Modèle de données et règles de calcul rédigés. Aucun code pour l'instant.
 
 ## Principes
 
@@ -28,8 +28,9 @@ Phase actuelle : **conception** (phases A à C du prompt maître : inventaire, c
 | `docs/00-cadrage.md` | Cadrage : usages, données et confidentialité, périmètre V1 |
 | `docs/01-inventaire.md` | Domaines génériques et regroupement en blocs |
 | `docs/02-modele-de-donnees.md` | Modèle de données : types d'éléments, rôles, relations |
+| `docs/03-regles-de-calcul.md` | Règles de calcul : échéances, rappels, regroupements, stocks, contrats |
 | `docs/decisions.md` | Journal des décisions |
 
 ## Prochaine étape
 
-Modèle de données : squelette général (personnes, lieux, ressources, échéances, documents, transactions), puis fiche type d'un véhicule.
+Architecture technique (phase E) : base de données, services, accès distant sécurisé, sauvegardes chiffrées, choix de l'IA locale.

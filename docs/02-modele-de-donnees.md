@@ -107,7 +107,7 @@ Deux sortes de ressources : les **biens suivis individuellement** et les **conso
 | Numéro de série ou d'identification | |
 | Date et prix d'achat | |
 | Fournisseur | Lien vers un acteur |
-| Compteur d'usage | Kilomètres ou heures |
+| Compteur d'usage | Kilomètres ou heures ; dernier relevé d'un historique (date, valeur) |
 | État | En service, en panne, vendu |
 
 **Consommables en stock** (carburant, filtres, pièces)
@@ -117,6 +117,8 @@ Deux sortes de ressources : les **biens suivis individuellement** et les **conso
 | Quantité en stock, unité | |
 | Seuil de réapprovisionnement | Déclenche une proposition de commande |
 | Fournisseur habituel | Lien vers un acteur |
+| Délai de livraison habituel | Sert à proposer un seuil |
+| Relevés de stock | Historique (date, quantité) |
 
 **Historique des commandes :** ce n'est pas un champ saisi. Il est consulté depuis la fiche de la ressource et déduit des transactions d'achat qui lui sont rattachées (date, quantité, prix, fournisseur). Il permet de calculer la consommation moyenne et d'anticiper les réapprovisionnements. Les champs nécessaires (quantité, statut de commande) seront définis avec le type Transaction.
 
@@ -138,6 +140,10 @@ L'activité est le processus récurrent : c'est elle qui génère les échéance
 | Regroupable avec | Autres activités pouvant se faire en même temps |
 | Mode de traitement | À faire soi-même, à déléguer ou automatisable |
 | Délai de rappel | Combien de temps avant l'échéance prévenir |
+| Ancrage | Pour la fréquence par durée : depuis la dernière réalisation, ou date fixe du calendrier |
+| Fenêtre saisonnière | Pour la fréquence par saison : début et fin |
+| Tolérance d'avance | De combien l'échéance peut être avancée pour un regroupement |
+| Obligation | Légale, contractuelle ou libre : détermine l'urgence |
 
 ## Champs du type Échéance
 
@@ -148,7 +154,7 @@ L'échéance est une occurrence datée d'une activité, créée automatiquement 
 | Activité d'origine | Lien vers une activité |
 | Date prévue | |
 | Date limite | Par exemple la limite légale d'un contrôle |
-| Statut | À venir, proposée, planifiée, faite, reportée, annulée, en retard |
+| Statut | À venir, proposée, planifiée, faite, reportée, annulée, en retard, à compléter (information manquante) |
 | Date de réalisation | |
 | Ressource, acteur, lieu | Repris de l'activité, modifiables |
 | Rendez-vous pris | Date et heure |
@@ -205,6 +211,42 @@ Pas de type séparé. Un contrat ou un abonnement se représente ainsi :
 
 L'IA remplit ces champs à partir de la photo ou du scan du contrat, et l'utilisateur valide.
 
+## Objets auxiliaires
+
+Deux objets complètent les 7 types sans en être de nouveaux : ils structurent le modèle.
+
+- **Espace** : ensemble de données partagées par un ou plusieurs utilisateurs. Tout élément appartient à exactement un espace. C'est ce qui rend le système réutilisable par n'importe qui : un utilisateur seul a un espace, un foyer en partage un.
+- **Regroupement** (passage commun) : ensemble d'échéances réalisées ensemble. Champs : date, acteur, lieu, statut (proposé, accepté, refusé, fait). Voir `03-regles-de-calcul.md`.
+
+## Relations détaillées (cardinalités)
+
+Notation : `0..1` (au plus un), `1` (exactement un), `0..n` (aucun ou plusieurs), `1..n` (au moins un).
+
+| De | Vers | Cardinalité | Remarque |
+| --- | --- | --- | --- |
+| Tout élément | Espace | 1 | |
+| Acteur (personne) | Acteur (organisation) | 0..1 | Une organisation a 0..n personnes |
+| Acteur | Rôle | 1..n | |
+| Acteur | Lieu (adresse) | 0..n | Une adresse principale ; un lieu peut être l'adresse de 0..n acteurs |
+| Ressource | Lieu de rangement | 0..1 | |
+| Ressource | Acteur (fournisseur) | 0..1 | Fournisseur habituel ; les autres apparaissent via les transactions |
+| Activité | Ressource | 0..n | |
+| Activité | Acteur | 0..n | |
+| Activité | Lieu | 0..1 | |
+| Activité | Activité | 0..n | Deux liens distincts : dépendances et « regroupable avec » |
+| Activité | Échéance | 0..n | Une activité génère ses échéances |
+| Échéance | Activité | 0..1 | Vide pour une échéance ponctuelle créée à la main (événement exceptionnel) |
+| Échéance | Ressource | 0..n | Reprise de l'activité, modifiable |
+| Échéance | Acteur | 0..n | Reprise de l'activité, modifiable |
+| Échéance | Lieu | 0..1 | Repris de l'activité, modifiable |
+| Échéance | Regroupement | 0..1 | Un regroupement contient 1..n échéances |
+| Transaction | Acteur | 0..1 | |
+| Transaction | Échéance | 0..1 | |
+| Transaction | Activité | 0..1 | |
+| Transaction | Ressource | 0..1 | V1 : une ressource par transaction d'achat ; des lignes multiples pourront être ajoutées si le besoin apparaît |
+| Document | Acteur, Ressource, Activité, Échéance, Transaction | 0..n pour chacun | Relation plusieurs-à-plusieurs : un élément a 0..n documents |
+
 ## À définir ensuite
-- Le détail des relations (cardinalités).
-- Les règles de calcul des échéances et de regroupement des activités.
+
+- Architecture technique (phase E) : base de données, services, accès distant, sauvegardes chiffrées.
+- Critères de réussite mesurables de la V1 (phase G).
